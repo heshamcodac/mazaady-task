@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
-import "./globals.scss";
+import "./styles/globals.scss";
 
 const tajawal = Tajawal({
   weight: ["300", "500", "700"],

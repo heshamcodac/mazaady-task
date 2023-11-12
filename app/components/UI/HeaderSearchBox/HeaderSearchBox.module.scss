@@ -1,0 +1,21 @@
+.search-box {
+  display: block;
+  @apply flex items-stretch rounded-md bg-primaryLight;
+  :global {
+    .search-box__menu {
+      &-trigger {
+        @apply flex items-center justify-center gap-2 px-6 py-3 cursor-pointer;
+        border-left: 1px solid white;
+      }
+    }
+    .search-box__field {
+      @apply flex items-stretch;
+    }
+    input {
+      @apply w-[500px] py-2 px-4 outline-none bg-transparent;
+    }
+    .search-box__icon {
+      @apply flex items-center justify-center bg-primary h-full w-[64px] rounded-[5px];
+    }
+  }
+}

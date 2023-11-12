@@ -1,0 +1,13 @@
+.header {
+  @apply py-3;
+  :global {
+    .container {
+      @apply flex items-center justify-between gap-2;
+    }
+    .logo {
+      width: 110px;
+      height: auto;
+      position: relative;
+    }
+  }
+}
