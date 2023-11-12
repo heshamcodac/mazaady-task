@@ -1,4 +1,32 @@
 import type { Config } from "tailwindcss";
+import * as defaultColors from "tailwindcss/colors";
+
+const colors = {
+  transparent: "transparent",
+  black: "red",
+  white: "#fff",
+  gray: defaultColors.gray,
+  neutral: defaultColors.neutral,
+  green: defaultColors.green,
+  pink: defaultColors.pink,
+  primary: "#D20653",
+  primaryLight: "#fae6ed",
+  primaryDark: "#9B0257",
+  // primary: {
+  //   50: "#fef1f8",
+  //   100: "#fee5f2",
+  //   200: "#ffcae7",
+  //   300: "#ff9fd1",
+  //   400: "#ff64b1",
+  //   500: "#fe3691",
+  //   600: "#ef136d",
+  //   700: "#d20653",
+  //   800: "#ac0844",
+  //   900: "#8f0c3c",
+  //   950: "#58001f",
+  // },
+};
+export { colors };
 
 const config: Config = {
   content: [
@@ -8,11 +36,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+      colors,
     },
   },
   plugins: [],
