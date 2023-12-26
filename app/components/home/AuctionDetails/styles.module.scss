@@ -1,0 +1,37 @@
+.auction-details {
+  box-shadow: 3px 5px 37px rgba(0, 0, 0, 0.09);
+  @apply bg-white rounded mb-5;
+  :global {
+    .cover {
+      @apply relative h-[380px] bg-center bg-no-repeat bg-cover;
+      .icons {
+        @apply flex items-stretch gap-3;
+        > div {
+          @apply w-12 h-12 rounded-full flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-[5px] cursor-pointer;
+        }
+      }
+    }
+    .seller {
+      @apply flex items-center gap-3 mb-4;
+    }
+    .avatar-wrapper {
+      @apply relative w-11 h-11;
+    }
+    .seller-love {
+      @apply rounded-full w-6 h-6 flex items-center justify-center shadow-md bg-white absolute -bottom-1 -left-1;
+    }
+    .badge {
+      @apply bg-primary bg-opacity-10 rounded px-3 py-2;
+    }
+    .add-bid {
+      @apply flex gap-2;
+      input {
+        @apply border border-gray-400 bg-white px-2 py-1 rounded;
+      }
+      button {
+        background-image: linear-gradient(270deg, #d20653 0%, #9b0257 100%);
+        @apply px-6 rounded;
+      }
+    }
+  }
+}

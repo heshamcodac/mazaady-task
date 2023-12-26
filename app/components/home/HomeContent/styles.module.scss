@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 2rem auto;
+  :global {
+    .col {
+      flex-shrink: 0;
+      &.lg {
+        flex: 1;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 import { FC, useState } from "react";
 import { Icon, Typography } from "@components";
-import styles from "./HeaderSearchBox.module.scss";
+import styles from "./styles.module.scss";
 import { colors } from "tailwind.config";
 
 const HeaderSearchBox: FC = () => {
@@ -15,13 +15,13 @@ const HeaderSearchBox: FC = () => {
           <Typography className="text-primary text-sm">
             مزاد مباشر متعدد
           </Typography>
-          <Icon name="chevronArrow" size={16} color={colors.primary} />
+          <Icon name="chevronArrow" size={16} strokeColor={colors.primary} />
         </div>
       </div>
       <div className="search-box__field">
         <input type="search" placeholder="ابحث هنا" />
         <div className="search-box__icon">
-          <Icon name="search" color="white" />
+          <Icon name="search" strokeColor="white" />
         </div>
       </div>
     </div>

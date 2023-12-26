@@ -14,5 +14,8 @@ export type TypographyProps = {
     | "code";
   className?: string;
   capitalizeFirstLetter?: boolean;
+  color?: string;
+  size?: number;
+  dir?: "rtl" | "ltr";
   children: React.ReactNode;
 };

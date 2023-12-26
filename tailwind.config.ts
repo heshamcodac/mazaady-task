@@ -3,7 +3,7 @@ import * as defaultColors from "tailwindcss/colors";
 
 const colors = {
   transparent: "transparent",
-  black: "red",
+  black: "#000",
   white: "#fff",
   gray: defaultColors.gray,
   neutral: defaultColors.neutral,
@@ -12,6 +12,8 @@ const colors = {
   primary: "#D20653",
   primaryLight: "#fae6ed",
   primaryDark: "#9B0257",
+  purple: "#44215D",
+  yellow: "#FDBC01",
   // primary: {
   //   50: "#fef1f8",
   //   100: "#fee5f2",

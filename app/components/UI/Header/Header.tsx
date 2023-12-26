@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Header.module.scss";
+import styles from "./styles.module.scss";
 import Image from "next/image";
 import { HeaderSearchBox } from "@components";
 
@@ -11,8 +11,8 @@ const Header = () => {
         <Image
           src="/images/logo.png"
           alt="Mazaady's logo"
-          width={109}
-          height={35}
+          width={110}
+          height={36}
           priority={true}
         />
       </div>

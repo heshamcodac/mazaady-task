@@ -1,0 +1,17 @@
+.competitors {
+  @apply bg-white rounded p-3 pb-5 flex flex-col gap-2;
+  :global {
+    ul {
+      @apply flex flex-col gap-3;
+    }
+    li {
+      @apply flex items-center gap-2;
+      .content {
+        @apply flex-1;
+      }
+      .bid-amount {
+        @apply bg-yellow bg-opacity-10 rounded px-2;
+      }
+    }
+  }
+}
