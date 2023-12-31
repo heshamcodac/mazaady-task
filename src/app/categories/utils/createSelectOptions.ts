@@ -1,7 +1,11 @@
-import { Category, Property, ISelectOption } from "../types";
+import {
+  CategorySelectData,
+  CategoryChildrenSelectData,
+  ISelectOption,
+} from "../types";
 
 export default function createSelectOptions(
-  data: Category[] | Property[],
+  data: CategorySelectData[] | CategoryChildrenSelectData[] | ISelectOption[],
   additionalKeys?: string[]
 ): ISelectOption[] {
   return data?.map((item) => {

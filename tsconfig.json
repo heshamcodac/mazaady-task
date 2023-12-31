@@ -22,7 +22,6 @@
     "paths": {
       "@components": ["./src/components"],
       "@utils": ["./src/utils"],
-      "@hooks": ["./src/hooks"],
       "@styles/*": ["./src/styles/*"]
     }
   },

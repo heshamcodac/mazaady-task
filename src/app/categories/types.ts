@@ -5,6 +5,7 @@ import { DefaultOptionType } from "antd/es/select";
 export type IOptionValue = string | null;
 export interface ISelectOption
   extends Omit<DefaultOptionType, "children" | "parent" | "child"> {
+  // valueLabel?: string;
   [key: string]: unknown;
 }
 
@@ -12,7 +13,8 @@ export interface ISelectOption
 export interface SelectComponentProps {
   slug: string;
   label: string;
-  value: IOptionValue;
+  value: ISelectOption;
+  // valueLabel: string;
   options: ISelectOption[] | any;
   id?: string;
   loading?: boolean;

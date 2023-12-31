@@ -1,19 +1,17 @@
 "use client";
-import { useAppDispatch } from "@hooks";
-import { Form, FormInstance, Input, Select } from "antd";
+import { Button, Form, FormInstance, Input, Select, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import {
-  SelectComponentProps,
-  ISelectOption,
-  CategoryChildrenSelectData,
-} from "../types";
+import { SelectComponentProps, CategoryChildrenSelectData } from "../types";
 import { useQuery } from "react-query";
 import { createSelectOptions, createSelectProps } from "../utils";
 import { GET } from "@utils";
+import styles from "./styles.module.scss";
 
 const CategoriesForm = () => {
   // constants
   const [form] = Form.useForm<FormInstance>();
+  const [tableColumns, setTableColumns] = useState<any>([]);
+  const [tableData, setTableData] = useState<any>([]);
   // 3 types of selects (main, sub, children)
   const [mainCategorySelect, setMainCategorySelect] =
     useState<SelectComponentProps>({
@@ -21,10 +19,10 @@ const CategoriesForm = () => {
         label: "Main category",
         slug: "mainCategory",
         onChange: (val: any, option: any) => {
-          setMainCategorySelect((prev: any) => ({ ...prev, value: val }));
+          setMainCategorySelect((prev: any) => ({ ...prev, value: option }));
           setSubcategorySelect((prev) => ({
             ...prev,
-            value: null,
+            value: { value: null, label: "" },
             options: createSelectOptions(option.children),
           }));
           setCategoryChildrenSelects([]);
@@ -36,8 +34,12 @@ const CategoriesForm = () => {
       ...createSelectProps({
         label: "Subcategory",
         slug: "subcategory",
-        onChange: (val) => {
-          setSubcategorySelect((prev) => ({ ...prev, value: val }));
+        onChange: (val, option) => {
+          console.log(option);
+          setSubcategorySelect((prev) => ({
+            ...prev,
+            value: option,
+          }));
         },
       }),
     });
@@ -63,9 +65,10 @@ const CategoriesForm = () => {
     async () => GET({ endpoint: "get_all_cats" })
   );
   const { data: propertiesRes, isLoading: propertiesIsLoading } = useQuery(
-    ["properties", subcategorySelect.value],
-    async () => GET({ endpoint: `properties?cat=${subcategorySelect.value}` }),
-    { enabled: !!subcategorySelect.value }
+    ["properties", subcategorySelect.value.value],
+    async () =>
+      GET({ endpoint: `properties?cat=${subcategorySelect.value.value}` }),
+    { enabled: !!subcategorySelect.value.value }
   );
   const { data: nestedPropertiesRes, isLoading: nestedPropertiesIsLoading } =
     useQuery(
@@ -113,7 +116,7 @@ const CategoriesForm = () => {
             ...prev.map((select, i) => {
               if (select.id === option.parent) {
                 insertIndex = i + 1;
-                return { ...select, value: val };
+                return { ...select, value: option };
               }
               return select;
             }),
@@ -165,42 +168,73 @@ const CategoriesForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nestedPropertiesRes, nestedPropertiesIsLoading]);
 
-  const onSubmit = () => {
-    console.log("Form submitted!");
+  const onSubmit = (values: any) => {
+    console.log("Form submitted!", values);
+    let allSelects = [
+      mainCategorySelect,
+      subcategorySelect,
+      ...categoryChildrenSelects,
+    ];
+
+    setTableColumns(
+      allSelects.map((select) => ({
+        title: select.label,
+        dataIndex: select.slug,
+      }))
+    );
+
+    setTableData([
+      Object.assign(
+        { key: 1 },
+        ...allSelects.map((select) => ({
+          [select.slug]: select.value.label,
+        }))
+      ),
+    ]);
   };
   return (
-    <div className="w-[500px] p-4 my-4 mx-auto rounded border" dir="ltr">
-      <Form layout="vertical" onFinish={onSubmit} form={form}>
-        <Form.Item
-          label={mainCategorySelect?.label}
-          rules={[{ required: true }]}
-        >
-          <Select {...mainCategorySelect} />
-        </Form.Item>
-        <Form.Item
-          label={subcategorySelect?.label}
-          rules={[{ required: true }]}
-        >
-          <Select {...subcategorySelect} />
-        </Form.Item>
-        {!!categoryChildrenSelects?.length &&
-          categoryChildrenSelects.map((child) => (
-            <React.Fragment key={child?.slug}>
-              <Form.Item label={child?.label}>
-                <Select {...child} />
-              </Form.Item>
-              {child?.value === `${child?.slug}_other-option` && (
-                <Form.Item name={`${child?.slug}_other-option`}>
-                  <Input
-                    placeholder="Enter Other Option"
-                    style={{ border: "2px solid #9B0257" }}
-                  />
+    <>
+      <div className={styles.form} dir="ltr">
+        <Form layout="vertical" onFinish={onSubmit} form={form}>
+          <Form.Item
+            label={mainCategorySelect?.label}
+            name={mainCategorySelect?.name}
+            rules={[{ required: true }]}
+          >
+            <Select {...mainCategorySelect} />
+          </Form.Item>
+          <Form.Item
+            label={subcategorySelect?.label}
+            name={subcategorySelect?.name}
+            rules={[{ required: true }]}
+          >
+            <Select {...subcategorySelect} />
+          </Form.Item>
+          {!!categoryChildrenSelects?.length &&
+            categoryChildrenSelects.map((select) => (
+              <React.Fragment key={select?.slug}>
+                <Form.Item label={select?.label} name={select.name}>
+                  <Select {...select} />
                 </Form.Item>
-              )}
-            </React.Fragment>
-          ))}
-      </Form>
-    </div>
+                {select?.value.value === `${select?.slug}_other-option` && (
+                  <Form.Item name={`${select?.slug}_other-option`}>
+                    <Input placeholder="Enter Other Option" />
+                  </Form.Item>
+                )}
+              </React.Fragment>
+            ))}
+
+          <button type="submit">Submit</button>
+        </Form>
+      </div>
+      {!!tableColumns.length && !!tableData.length && (
+        <Table
+          pagination={false}
+          dataSource={tableData}
+          columns={tableColumns}
+        />
+      )}
+    </>
   );
 };
 

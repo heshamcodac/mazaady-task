@@ -1,0 +1,9 @@
+.form {
+  @apply w-[500px] max-w-full p-4 my-4 mx-auto rounded border;
+  :global {
+    button {
+      background-image: linear-gradient(270deg, #d20653 0%, #9b0257 100%);
+      @apply px-4 py-2 rounded text-white;
+    }
+  }
+}
