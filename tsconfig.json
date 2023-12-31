@@ -20,11 +20,18 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@components": ["app/components"],
-      "@styles/*": ["app/styles/*"],
-      "@icons": ["app/components/icons"]
+      "@components": ["./src/components"],
+      "@utils": ["./src/utils"],
+      "@hooks": ["./src/hooks"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/categories/copy.jsx"
+  ],
   "exclude": ["node_modules"]
 }
