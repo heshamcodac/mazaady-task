@@ -28,7 +28,6 @@ const AuctionDetails = () => {
               </Typography>
             </div>
           </div>
-          <div className="flex w-5 h-5 rounded-full bg-black border-2 border-x-0 border-cyan-50"></div>
           <div className="icons">
             <div>
               <Icon name="share" strokeColor="white" />

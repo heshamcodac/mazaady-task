@@ -39,7 +39,6 @@ const CategoriesForm = () => {
         label: "Subcategory",
         slug: "subcategory",
         onChange: (val, option) => {
-          console.log(option);
           setSubcategorySelect((prev) => ({
             ...prev,
             value: option,
@@ -107,10 +106,6 @@ const CategoriesForm = () => {
         ],
         onChange: (val, option) => {
           let insertIndex: number | null = null;
-          console.log(
-            "You just selected an option of category child select",
-            option
-          );
           setCategoryChildrenSelects((prev) => [
             ...prev.map((select, i) => {
               if (select.id === option.parent) {
@@ -142,7 +137,6 @@ const CategoriesForm = () => {
 
   useEffect(() => {
     if (nestedPropertiesRes && !nestedPropertiesIsLoading) {
-      console.log(nestedPropertiesIsLoading, nestedPropertiesRes);
       const arr = [...categoryChildrenSelects];
       let childIndex: number | null = newCategoryChildIndex;
       const isNewChildExist = (select: CategoryChildrenSelectData) => {
@@ -168,7 +162,6 @@ const CategoriesForm = () => {
   }, [nestedPropertiesRes, nestedPropertiesIsLoading]);
 
   const onSubmit = (values: any) => {
-    console.log("Form submitted!", values);
     let allSelects = [
       mainCategorySelect,
       subcategorySelect,
