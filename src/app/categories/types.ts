@@ -13,7 +13,7 @@ export interface ISelectOption
 export interface SelectComponentProps {
   slug: string;
   label: string;
-  value: ISelectOption;
+  value: any;
   // valueLabel: string;
   options: ISelectOption[] | any;
   id?: string;

@@ -7,10 +7,28 @@ const AuctionDetails = () => {
     <div className={styles["auction-details"]}>
       <div
         className="cover"
-        style={{ backgroundImage: "url(/images/cars/1.jpeg" }}
+        style={{ backgroundImage: "url(/images/cars/3.jpeg" }}
       >
-        <div className="flex justify-between gap-3 p-4">
-          <div className="info">MISSING</div>
+        <div className="flex justify-between items-start gap-3 p-4">
+          <div className="live-data">
+            <div>
+              <Typography as="small" color="#c2c1c1">
+                02:00
+              </Typography>
+            </div>
+            <div>
+              <Icon
+                name="eye"
+                fillColor="white"
+                size={16}
+                className="opacity-60"
+              />
+              <Typography as="small" color="#c2c1c1">
+                3000
+              </Typography>
+            </div>
+          </div>
+          <div className="flex w-5 h-5 rounded-full bg-black border-2 border-x-0 border-cyan-50"></div>
           <div className="icons">
             <div>
               <Icon name="share" strokeColor="white" />

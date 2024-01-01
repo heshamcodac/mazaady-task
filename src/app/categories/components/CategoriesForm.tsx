@@ -1,7 +1,11 @@
 "use client";
 import { Button, Form, FormInstance, Input, Select, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import { SelectComponentProps, CategoryChildrenSelectData } from "../types";
+import {
+  SelectComponentProps,
+  CategoryChildrenSelectData,
+  ISelectOption,
+} from "../types";
 import { useQuery } from "react-query";
 import { createSelectOptions, createSelectProps } from "../utils";
 import { GET } from "@utils";
@@ -18,7 +22,7 @@ const CategoriesForm = () => {
       ...createSelectProps({
         label: "Main category",
         slug: "mainCategory",
-        onChange: (val: any, option: any) => {
+        onChange: (val, option: any) => {
           setMainCategorySelect((prev: any) => ({ ...prev, value: option }));
           setSubcategorySelect((prev) => ({
             ...prev,
@@ -46,11 +50,6 @@ const CategoriesForm = () => {
   const [categoryChildrenSelects, setCategoryChildrenSelects] = useState<
     SelectComponentProps[]
   >([]);
-
-  const [selectedCategoryChild, setSelectedCategoryChild] = useState<{
-    id: string | null;
-    insertIndex: number | null;
-  }>({ id: null, insertIndex: null });
 
   const [selectedCategoryChildId, setSelectedCategoryChildId] = useState<
     string | null

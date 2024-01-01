@@ -7,6 +7,7 @@ import BellIcon from "./BellIcon";
 import ShareIcon from "./ShareIcon";
 import FlagIcon from "./FlagIcon";
 import StarIcon from "./StarIcon";
+import EyeIcon from "./EyeIcon";
 
 const icons = {
   search: SearchIcon,
@@ -18,6 +19,7 @@ const icons = {
   share: ShareIcon,
   flag: FlagIcon,
   star: StarIcon,
+  eye: EyeIcon,
 };
 
 export default icons;
